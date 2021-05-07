@@ -31,18 +31,17 @@ namespace HashTable
 
             int index = 18;
             string choice = hash.Get(index);  // getting the specific value from hashtable.
-
             Console.WriteLine("{0}th index values : is {1}", index, choice);
 
             int index2 = 15;
             string choice2 = hash.Get(index2);
             Console.WriteLine("{0}th index values : is {1}", index2, choice2);
+
+            hash.Remove(index);//remove 18 index
             hash.Display();
             Console.Read();
 
 
         }
     }
-
 }
-
