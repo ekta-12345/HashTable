@@ -26,7 +26,8 @@ namespace HashTable
 
         protected int GetArrayPosition(K key) //GetArrayPosition is method and passing key as parameter
         {
-            int position = key.GetHashCode() % size;//GetHashCode is predifine method,to identify the hashcode of this particular key
+            //hashcode is generated which tells about where the particular key and value will be stored
+            int position = key.GetHashCode() % size;//GetHashCode is predifine method,to identifey the hashcode of this particular key
             return Math.Abs(position);//Math.abs function To identify integer value and At what index this purticular keyvalue is present.
         }
 
@@ -41,11 +42,13 @@ namespace HashTable
             //getlinkedlist method is called with position of linkedlist in array
 
             LinkedList<keyValue<K, V>> linkedList = GetLinkedList(position);//identifying the position calling the getLinkedlist()
-           
-            
-            foreach (keyValue<K, V> item in linkedList)//foreach loop is used to access the key and values from linkedlist
+            //linkedlist contains all the key value pairs for which same hashcode was generated 
+            //each key value pair in linkedlist is of data type keyValue (struct) defined at end of class.
+            //foreach loop is used to access the key and values from linkedlist
+            foreach (keyValue<K, V> item in linkedList)
             {
-                
+                //if key element matches with the key in linkedlist, value is retuned
+                //otherwise loop is iterated.
                 if (item.Key.Equals(key))
                 {
                     return item.Value;
@@ -55,7 +58,9 @@ namespace HashTable
         }
         protected LinkedList<keyValue<K, V>> GetLinkedList(int position)//method and GetLinkedList having return type is Linkedlist keyvalue pair which is define line no13
         {
-            
+            //linkedlist contains a data type of keyvalue.
+            //position helps to findout the linkedlist in which key value pair will be inserted
+            //position is passed into array of items and stored in variable linkedlist with data type as defined below.
             LinkedList<keyValue<K, V>> linkedList = items[position];
 
             if (linkedList == null)
@@ -76,8 +81,6 @@ namespace HashTable
             int position = GetArrayPosition(key);
 
             LinkedList<keyValue<K, V>> linkedList = GetLinkedList(position);
-            //for adding value in linkedlist. Struct object is defined, like a class and key and value obtained as a parameter
-            //to this method are passed as parameter to object
             //keyValue struct is instatiated and stores the key and value, which is passed as one object to linkedlist.
             keyValue<K, V> item = new keyValue<K, V>() { Key = key, Value = value };
             //keyvalue is added in the linkedlist.
@@ -113,11 +116,14 @@ namespace HashTable
 
         public void Display()
         {
-
+            //linkedlist is iterated in array
             foreach (var linkedList in items)
             {
-
+                //linkedlist may be null, if hashcode never generated the positon of array
                 if (linkedList != null)
+
+                    //if linkedlist is not null, linkedlist is iterated
+
                     foreach (keyValue<K, V> keyvalue in linkedList)
                     {
 
@@ -128,12 +134,7 @@ namespace HashTable
 
     }
 
-    /// <summary>
-    /// Defining a struct data type to store key and value
-    /// struct is similar to class and used to hold values
-    /// </summary>
-
-    public struct keyValue<k, v>
+        public struct keyValue<k, v>
     {
 
         public k Key { get; set; }

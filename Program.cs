@@ -11,24 +11,38 @@ namespace HashTable
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to HashTable Program");
-            MyMapNode<string, string> hash = new MyMapNode<string, string>(5);//creating object and Key and value datatype is string and size is 5
-            // Adding values in hashtable.
-            hash.Add("0", "To");
-            hash.Add("1", "be");
-            hash.Add("2", "or");
-            hash.Add("3", "not");
-            hash.Add("4", "To");
-            hash.Add("5", "be");
+            MyMapNode<int, string> hash = new MyMapNode<int, string>(15);//creating object and Key and value datatype is string and size is 5
 
 
-            // getting the specific value from hashtable.
-            string hash5 = hash.Get("5");
-            Console.WriteLine("5th index value:" + hash5);
-            // hash.Remove("0");
+            //creating a string of sentence
+            string phrase = "Paranoids are not paranoid because they are paranoid but because they keep putting themselves deliberately into paranoid avoidable situations";
+
+            //adding values into array
+            string[] words = phrase.Split(' ');//split method is used 
+                                               //split string into substrings
+
+            int a = 1;
+            foreach (var element in words)
+            {
+                hash.Add(a, element);
+                a++;
+
+            }
+
+            int index = 18;
+            string choice = hash.Get(index);  // getting the specific value from hashtable.
+
+            Console.WriteLine("{0}th index values : is {1}", index, choice);
+
+            int index2 = 15;
+            string choice2 = hash.Get(index2);
+            Console.WriteLine("{0}th index values : is {1}", index2, choice2);
             hash.Display();
             Console.Read();
+
+
         }
     }
+
 }
-    
 
