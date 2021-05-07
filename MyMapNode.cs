@@ -81,6 +81,8 @@ namespace HashTable
             int position = GetArrayPosition(key);
 
             LinkedList<keyValue<K, V>> linkedList = GetLinkedList(position);
+            //for adding value in linkedlist. Struct object is defined, like a class and key and value obtained as a parameter
+            //to this method are passed as parameter to object
             //keyValue struct is instatiated and stores the key and value, which is passed as one object to linkedlist.
             keyValue<K, V> item = new keyValue<K, V>() { Key = key, Value = value };
             //keyvalue is added in the linkedlist.
@@ -134,7 +136,12 @@ namespace HashTable
 
     }
 
-        public struct keyValue<k, v>
+    /// <summary>
+    /// Defining a struct data type to store key and value
+    /// struct is similar to class and used to hold values
+    /// </summary>
+
+    public struct keyValue<k, v>
     {
 
         public k Key { get; set; }
